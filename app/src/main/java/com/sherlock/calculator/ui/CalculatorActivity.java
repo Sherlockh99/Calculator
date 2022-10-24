@@ -2,6 +2,7 @@ package com.sherlock.calculator.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -18,6 +19,7 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
     private TextView resultTxt;
     private CalculatorPresenter presenter;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +46,7 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
                 presenter.onDigitPressed(digits.get(view.getId()));
             }
         };
+
         findViewById(R.id.key_0).setOnClickListener(digitClickListener);
         findViewById(R.id.key_1).setOnClickListener(digitClickListener);
         findViewById(R.id.key_2).setOnClickListener(digitClickListener);
@@ -60,6 +63,7 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
         operators.put(R.id.key_minus,Operator.SUB);
         operators.put(R.id.key_mult,Operator.MULT);
         operators.put(R.id.key_div,Operator.DIV);
+        operators.put(R.id.key_div,Operator.RES);
 
         View.OnClickListener operatorsClickListener = new View.OnClickListener() {
             @Override
@@ -67,10 +71,12 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
                 presenter.onOperatorPressed(operators.get(view.getId()));
             }
         };
+
         findViewById(R.id.key_plus).setOnClickListener(operatorsClickListener);
         findViewById(R.id.key_minus).setOnClickListener(operatorsClickListener);
         findViewById(R.id.key_mult).setOnClickListener(operatorsClickListener);
         findViewById(R.id.key_div).setOnClickListener(operatorsClickListener);
+        findViewById(R.id.key_result).setOnClickListener(operatorsClickListener);
 
         findViewById(R.id.key_dot).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +84,7 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
                 presenter.onDotPressed();
             }
         });
+
     }
 
     @Override

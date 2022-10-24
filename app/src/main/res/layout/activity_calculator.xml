@@ -4,7 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="18dp">
+    android:padding="18dp"
+    android:background="@drawable/earth_portrait"
+    >
     <!-- поле результата -->
     <TextView
         android:id="@+id/result"
@@ -12,6 +14,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintHorizontal_weight="1"
         android:textSize="@dimen/result_size"
+        android:textColor="@color/white"
         android:gravity="end"
         android:text="@string/key_0"
         app:layout_constraintTop_toTopOf="parent"
@@ -26,6 +29,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toTopOf="@id/firstButtonPanel"
+        android:textColor="@color/white"
         />
 
     <LinearLayout
@@ -147,6 +151,7 @@
             style="@style/StyleButton"
             android:text="@string/key_dot"/>
         <Button
+            android:id="@+id/key_result"
             style="@style/StyleButton"
             android:text="@string/key_result"/>
     </LinearLayout>

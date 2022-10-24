@@ -49,4 +49,7 @@ public class CalculatorPresenter {
         view.showResult(formater.format(d));
     }
 
+    public void onResultPressed() {
+
+    }
 }

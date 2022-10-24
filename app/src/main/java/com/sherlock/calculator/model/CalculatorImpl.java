@@ -12,6 +12,8 @@ public class CalculatorImpl implements Calculator {
                 return arg1 * arg2;
             case DIV:
                 return arg1 / arg2;
+            case RES:
+                return arg1;
         }
         return 0.0;
     }
