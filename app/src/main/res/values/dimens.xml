@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="column_count">4</dimen>
-    <dimen name="text_size_result">22pt</dimen>
+    <dimen name="result_size">58sp</dimen>
     <dimen name="layout_margin">3dp</dimen>
     <dimen name="margin_top">16dp</dimen>
 </resources>
