@@ -5,5 +5,6 @@ public enum Operator {
     SUB,
     MULT,
     DIV,
-    RES
+    RES,
+    PERCENT
 }

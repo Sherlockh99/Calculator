@@ -2,19 +2,23 @@ package com.sherlock.calculator.model;
 
 public class CalculatorImpl implements Calculator {
     @Override
-    public double perform(double arg1, double arg2, Operator operator) {
-        switch (operator){
+    public double perform(double argOne, double argTwo, Operator firstOperator) {
+
+        switch (firstOperator){
             case ADD:
-                return arg1 + arg2;
+                return argOne + argTwo;
             case SUB:
-                return arg1 - arg2;
+                return argOne - argTwo;
             case MULT:
-                return arg1 * arg2;
+                return argOne * argTwo;
             case DIV:
-                return arg1 / arg2;
-            case RES:
-                return arg1;
+                return argOne / argTwo;
         }
-        return 0.0;
+        return argOne;
+    }
+
+    @Override
+    public double percent(double argOne, double argTwo) {
+        return argOne * argTwo / 100;
     }
 }

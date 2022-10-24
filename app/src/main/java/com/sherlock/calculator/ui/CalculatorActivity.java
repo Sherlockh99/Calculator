@@ -63,7 +63,7 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
         operators.put(R.id.key_minus,Operator.SUB);
         operators.put(R.id.key_mult,Operator.MULT);
         operators.put(R.id.key_div,Operator.DIV);
-        operators.put(R.id.key_div,Operator.RES);
+        //operators.put(R.id.key_percent,Operator.PERCENT);
 
         View.OnClickListener operatorsClickListener = new View.OnClickListener() {
             @Override
@@ -76,7 +76,7 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
         findViewById(R.id.key_minus).setOnClickListener(operatorsClickListener);
         findViewById(R.id.key_mult).setOnClickListener(operatorsClickListener);
         findViewById(R.id.key_div).setOnClickListener(operatorsClickListener);
-        findViewById(R.id.key_result).setOnClickListener(operatorsClickListener);
+        //findViewById(R.id.key_percent).setOnClickListener(operatorsClickListener);
 
         findViewById(R.id.key_dot).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,6 +84,28 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
                 presenter.onDotPressed();
             }
         });
+
+        findViewById(R.id.key_result).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presenter.onKeyResultPressed();
+            }
+        });
+
+        findViewById(R.id.key_clear_result).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presenter.onKeyClearResultPressed();
+            }
+        });
+
+        findViewById(R.id.key_percent).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presenter.onKeyPercentPressed();
+            }
+        });
+
 
     }
 

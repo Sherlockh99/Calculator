@@ -18,6 +18,6 @@
     <string name="key_result">=</string>
     <string name="key_clear_result">C</string>
     <string name="key_parentheses">()</string>
-    <string name="key_persent">%</string>
+    <string name="key_percent">%</string>
     <string name="key_plus_minus">+/-</string>
 </resources>

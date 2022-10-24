@@ -39,6 +39,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toTopOf="@id/secondButtonPanel">
         <Button
+            android:id="@+id/key_clear_result"
             style="@style/StyleButton"
             android:text="@string/key_clear_result"
             />
@@ -47,8 +48,9 @@
             android:text="@string/key_parentheses"
             />
         <Button
+            android:id="@+id/key_percent"
             style="@style/StyleButton"
-            android:text="@string/key_persent"
+            android:text="@string/key_percent"
             />
         <Button
             android:id="@+id/key_div"

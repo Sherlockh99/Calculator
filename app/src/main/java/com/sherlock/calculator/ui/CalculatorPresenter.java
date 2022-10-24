@@ -13,9 +13,12 @@ public class CalculatorPresenter {
 
     private double argOne;
     private Double argTwo;
+    private Double argRes;
+
     private Operator selectedOperator;
 
     private DecimalFormat formater = new DecimalFormat("#.##");
+
     public CalculatorPresenter(CalculatorView view, Calculator calculator) {
         this.view = view;
         this.calculator = calculator;
@@ -30,10 +33,15 @@ public class CalculatorPresenter {
             argTwo = argTwo*10 + digit;
             showFormatted(argTwo);
         }
+        argRes = null;
     }
 
     public void onOperatorPressed(Operator operator) {
-        if(selectedOperator!=null){
+        //if(selectedOperator!=null){
+        if(argRes!=null){
+            argOne = argRes;
+            argRes = null;
+        }else if(argTwo!=null){
             argOne = calculator.perform(argOne,argTwo,selectedOperator);
             showFormatted(argOne);
         }
@@ -49,7 +57,25 @@ public class CalculatorPresenter {
         view.showResult(formater.format(d));
     }
 
-    public void onResultPressed() {
+    public void onKeyResultPressed() {
+        if(selectedOperator!=Operator.RES){
+            argOne = calculator.perform(argOne,argTwo,selectedOperator);
+            showFormatted(argOne);
+            argRes = argOne;
+            argOne = 0;
+            argTwo = null;
+            selectedOperator = Operator.RES;
+        }
+    }
 
+    public void onKeyClearResultPressed() {
+        argOne = 0.0;
+        argTwo = null;
+        showFormatted(argOne);
+    }
+
+    public void onKeyPercentPressed() {
+        argTwo = calculator.percent(argOne,argTwo);
+        onKeyResultPressed();
     }
 }
