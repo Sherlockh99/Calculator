@@ -1,9 +1,8 @@
 package com.sherlock.calculator.ui;
 
-import android.icu.number.NumberFormatter;
-
 import com.sherlock.calculator.model.Calculator;
 import com.sherlock.calculator.model.Operator;
+import com.sherlock.calculator.model.PlusMinus;
 
 import java.text.DecimalFormat;
 
@@ -17,7 +16,12 @@ public class CalculatorPresenter {
 
     private Operator selectedOperator;
 
-    private DecimalFormat formater = new DecimalFormat("#.##");
+    private DecimalFormat formater = new DecimalFormat("#.####");
+
+    private PlusMinus plusMinus = PlusMinus.PLUS;
+
+    private boolean dotPressed;
+    private int numberDigit;
 
     public CalculatorPresenter(CalculatorView view, Calculator calculator) {
         this.view = view;
@@ -27,10 +31,20 @@ public class CalculatorPresenter {
 
     public void onDigitPressed(int digit) {
         if (argTwo == null) {
-            argOne = argOne * 10 + digit;
+            if(dotPressed) {
+                argOne = argOne + (double) (digit)/numberDigit;
+                numberDigit=numberDigit*10;
+            }else{
+                argOne = argOne * 10 + digit;
+            }
             showFormatted(argOne);
-        }else {
-            argTwo = argTwo*10 + digit;
+        }else{
+            if(dotPressed) {
+                argTwo = argTwo + (double) (digit)/numberDigit;
+                numberDigit=numberDigit*10;
+            }else{
+                argTwo = argTwo * 10 + digit;
+            }
             showFormatted(argTwo);
         }
         argRes = null;
@@ -41,16 +55,21 @@ public class CalculatorPresenter {
         if(argRes!=null){
             argOne = argRes;
             argRes = null;
-        }else if(argTwo!=null){
+        } else if(argTwo!=null){
             argOne = calculator.perform(argOne,argTwo,selectedOperator);
             showFormatted(argOne);
         }
+
+        dotPressed = false;
         argTwo=0.0;
         selectedOperator = operator;
     }
 
     public void onDotPressed() {
-
+        if(!dotPressed) {
+            dotPressed = true;
+            numberDigit = 10;
+        }
     }
 
     private void showFormatted(double d){
@@ -59,18 +78,22 @@ public class CalculatorPresenter {
 
     public void onKeyResultPressed() {
         if(selectedOperator!=Operator.RES){
-            argOne = calculator.perform(argOne,argTwo,selectedOperator);
-            showFormatted(argOne);
-            argRes = argOne;
-            argOne = 0;
-            argTwo = null;
-            selectedOperator = Operator.RES;
+            if (argTwo!=null) {
+                argOne = calculator.perform(argOne, argTwo, selectedOperator);
+                showFormatted(argOne);
+                argRes = argOne;
+                argOne = 0;
+                argTwo = null;
+                selectedOperator = Operator.RES;
+                dotPressed = false;
+            }
         }
     }
 
     public void onKeyClearResultPressed() {
         argOne = 0.0;
         argTwo = null;
+        dotPressed = false;
         showFormatted(argOne);
     }
 
