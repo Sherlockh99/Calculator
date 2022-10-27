@@ -101,4 +101,14 @@ public class CalculatorPresenter {
         argTwo = calculator.percent(argOne,argTwo);
         onKeyResultPressed();
     }
+
+    public void onKeyPlusMinusPressed() {
+        if(argTwo==null){
+            argOne = -argOne;
+            showFormatted(argOne);
+        }else {
+            argTwo = - argTwo;
+            showFormatted(argTwo);
+        }
+    }
 }
