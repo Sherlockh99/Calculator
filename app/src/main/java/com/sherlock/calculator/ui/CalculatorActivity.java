@@ -1,8 +1,8 @@
 package com.sherlock.calculator.ui;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -16,17 +16,24 @@ import java.util.Map;
 
 public class CalculatorActivity extends AppCompatActivity implements CalculatorView {
 
+    private static final String KEY_RESULT = "KEY_RESULT";
+    private final String KEY_PRESENTER = "KEY_PRESENTER";
     private TextView resultTxt;
     private CalculatorPresenter presenter;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator);
-
         resultTxt = findViewById(R.id.result);
-        presenter = new CalculatorPresenter(this,new CalculatorImpl());
+
+        if(savedInstanceState!=null) {
+            presenter = (CalculatorPresenter) savedInstanceState.getSerializable(KEY_PRESENTER);
+            presenter.setView(this);
+            showResult(savedInstanceState.getString(KEY_RESULT));
+        } else{
+            presenter = new CalculatorPresenter(this, new CalculatorImpl());
+        }
 
         Map<Integer,Integer> digits = new HashMap<>();
         digits.put(R.id.key_0,0);
@@ -111,6 +118,13 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
             }
         });
 
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putSerializable(KEY_PRESENTER, presenter);
+        outState.putString(KEY_RESULT,resultTxt.getText().toString());
+        super.onSaveInstanceState(outState);
     }
 
     @Override

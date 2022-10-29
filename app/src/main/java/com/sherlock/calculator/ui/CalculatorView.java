@@ -1,5 +1,7 @@
 package com.sherlock.calculator.ui;
 
-public interface CalculatorView {
+import java.io.Serializable;
+
+public interface CalculatorView extends Serializable {
     void showResult(String result);
 }

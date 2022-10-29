@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="column_count">4</dimen>
+    <dimen name="result_size">36sp</dimen>
+    <dimen name="layout_margin">1dp</dimen>
+    <dimen name="margin_top">8dp</dimen>
+</resources>

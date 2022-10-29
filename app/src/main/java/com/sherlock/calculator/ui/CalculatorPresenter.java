@@ -1,12 +1,24 @@
 package com.sherlock.calculator.ui;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.sherlock.calculator.model.Calculator;
 import com.sherlock.calculator.model.Operator;
 import com.sherlock.calculator.model.PlusMinus;
 
+import java.io.Serializable;
 import java.text.DecimalFormat;
 
-public class CalculatorPresenter {
+public class CalculatorPresenter extends ClassLoader implements Serializable {
+    public void setView(CalculatorView view) {
+        this.view = view;
+    }
+
+    public CalculatorView getView() {
+        return view;
+    }
+
     private CalculatorView view;
     private Calculator calculator;
 
@@ -29,7 +41,7 @@ public class CalculatorPresenter {
     }
 
 
-    public void onDigitPressed(int digit) {
+   public void onDigitPressed(int digit) {
         if (argTwo == null) {
             if(dotPressed) {
                 argOne = argOne + (double) (digit)/numberDigit;
