@@ -1,9 +1,12 @@
 package com.sherlock.calculator.ui;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.Nullable;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.TextView;
 
@@ -14,7 +17,7 @@ import com.sherlock.calculator.model.Operator;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CalculatorActivity extends AppCompatActivity implements CalculatorView {
+public class CalculatorActivity extends BaseActivity implements CalculatorView {
 
     private static final String KEY_RESULT = "KEY_RESULT";
     private final String KEY_PRESENTER = "KEY_PRESENTER";
@@ -22,9 +25,10 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
     private CalculatorPresenter presenter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator);
+
         resultTxt = findViewById(R.id.result);
 
         if(savedInstanceState!=null) {
@@ -118,6 +122,15 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
             }
         });
 
+
+        findViewById(R.id.key_settings).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //showResult("settings");
+                Intent intent = new Intent(CalculatorActivity.this, StylesActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

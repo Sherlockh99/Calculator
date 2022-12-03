@@ -4,4 +4,6 @@
     <dimen name="result_size">58sp</dimen>
     <dimen name="layout_margin">3dp</dimen>
     <dimen name="margin_top">16dp</dimen>
+    <dimen name="margin">8dp</dimen>
+    <dimen name="textSize">30sp</dimen>
 </resources>

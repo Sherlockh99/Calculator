@@ -20,4 +20,9 @@
     <string name="key_parentheses">()</string>
     <string name="key_percent">%</string>
     <string name="key_plus_minus">+/-</string>
+    <string name="my_cool_style">My cool style</string>
+    <string name="material_light" translatable="false">Material light</string>
+    <string name="material_light_action_bar_dark" translatable="false">Material light action bar dark</string>
+    <string name="material_dark" translatable="false">Material dark</string>
+    <string name="text_settings" translatable="false">Settings</string>
 </resources>
