@@ -1,8 +1,5 @@
 package com.sherlock.calculator.ui;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import com.sherlock.calculator.model.Calculator;
 import com.sherlock.calculator.model.Operator;
 import com.sherlock.calculator.model.PlusMinus;

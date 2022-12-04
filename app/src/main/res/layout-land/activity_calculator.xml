@@ -8,12 +8,12 @@
     android:background="@drawable/earth_portrait"
     >
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/key_settings"
+        android:id="@+id/key_changeTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="@string/text_settings"/>
+        android:text="@string/text_change_theme"/>
 
     <!-- поле результата -->
     <TextView
@@ -25,7 +25,7 @@
         android:textColor="@color/white"
         android:gravity="end"
         android:text="@string/key_0"
-        app:layout_constraintTop_toBottomOf="@id/key_settings"
+        app:layout_constraintTop_toBottomOf="@id/key_changeTheme"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
     <!-- поле ввода чисел
