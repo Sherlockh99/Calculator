@@ -12,6 +12,7 @@ import com.sherlock.calculator.R;
 import com.sherlock.calculator.model.CalculatorImpl;
 import com.sherlock.calculator.model.Operator;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,6 +29,7 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
     final int AppThemeLightCodeStyle = 1;
     final int AppThemeCodeStyle = 2;
     final int AppThemeDarkCodeStyle = 3;
+    private int[] themes = new int[]{AppThemeCodeStyle,AppThemeCodeStyle,AppThemeDarkCodeStyle};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -132,18 +134,16 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
         findViewById(R.id.key_changeTheme).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                if(i==3){
+                if (i>=themes.length){
                     i=0;
                 }else {
                     i++;
                 }
-
                 setAppTheme(i);
                 recreate();
-
             }
         });
+        //i = 0;
     }
 
     //сохранение настроек
@@ -156,11 +156,13 @@ public class CalculatorActivity extends AppCompatActivity implements CalculatorV
     }
 
     private int getAppTheme(int codeStyle){
-        i = getCodeStyle(codeStyle);
-        return codeStyleToStyleId(i);
+        int index = getCodeStyle(codeStyle);
+        //i = Arrays.asList(codeStyle).indexOf(index);
+        i = index;
+        return codeStyleToStyleId(index);
     }
 
-    int codeStyleToStyleId(int codeStyle){
+    private int codeStyleToStyleId(int codeStyle){
         switch (codeStyle){
             case AppThemeCodeStyle:
                 return R.style.Theme_Calculator;
